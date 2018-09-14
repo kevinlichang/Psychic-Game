@@ -46,6 +46,7 @@ document.onkeyup = function(event) {
 
   // compare key press to letter chosen by computer
   if (keyPress === computerGuess) {
+    alert("You got it!")
     wins++;
     winsHTML.textContent = wins;
     guessReset();
@@ -54,7 +55,7 @@ document.onkeyup = function(event) {
     guessesLeftHTML.textContent = guessesLeft;
   };
   
-  console.log(guessesLeft);
+  console.log("There are " + guessesLeft + " tries left");
 
   // display guesses so far
   var userGuess = document.createTextNode(keyPress + ", ");
@@ -68,7 +69,6 @@ document.onkeyup = function(event) {
     guessReset();
   }
   
-
   
 };
 
