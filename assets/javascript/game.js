@@ -14,8 +14,6 @@ var lossesHTML = document.getElementById("losses");
 var guessesLeftHTML = document.getElementById("guesses-left");
 var guessesSoFarHTML = document.getElementById("guesses-so-far");
 
-var addGuessHTML = document.createElement("span")
-
 
 // computer choose letter from letters list array
 var computerGuess = computerChoices[
@@ -27,7 +25,17 @@ console.log("Computer guessed " + computerGuess);
 
 
 // function for computer to choose next guess
-// function nextGuess() {
+
+// function to reset guesses
+function guessReset() {
+  // reset guesses left to 10
+  guessesLeft = 10;
+  guessesLeftHTML.textContent = guessesLeft;
+
+  // erase guesses so far list
+  guessesSoFarHTML.textContent = "";
+
+};
 
 
 
@@ -40,16 +48,25 @@ document.onkeyup = function(event) {
   if (keyPress === computerGuess) {
     wins++;
     winsHTML.textContent = wins;
+    guessReset();
   } else {
     guessesLeft--;
     guessesLeftHTML.textContent = guessesLeft;
-  }
+  };
+  
+  console.log(guessesLeft);
 
   // display guesses so far
   var userGuess = document.createTextNode(keyPress + ", ");
-  guessesSoFarHTML.appendChild(userGuess)
-  
+  guessesSoFarHTML.appendChild(userGuess);
+
   // check to see if there are any guesses remaining
+  if (guessesLeft <= 0) {
+    alert("Out of Guesses");
+    losses++;
+    lossesHTML.textContent = losses;
+    guessReset();
+  }
   
 
   
